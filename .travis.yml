@@ -8,10 +8,20 @@ language: php
 php:
     - '5.6'
     - '7.0'
+    - '7.1'
+
+matrix:
+    fast_finish: true
+    include:
+        - php: 7.1
+          env: DEPENDENCIES=beta
 
 cache:
     directories:
         - $HOME/.composer/cache
+
+before_install:
+    - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
 
 install:
     - php Tests/fix_composer_json.php
