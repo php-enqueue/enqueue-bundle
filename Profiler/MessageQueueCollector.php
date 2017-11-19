@@ -48,6 +48,14 @@ class MessageQueueCollector extends DataCollector
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function reset()
+    {
+        $this->data = [];
+    }
+
+    /**
      * @param string $priority
      *
      * @return string

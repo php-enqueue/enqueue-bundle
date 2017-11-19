@@ -4,6 +4,7 @@ parameters:
 services:
     Enqueue\JobQueue\Doctrine\JobStorage:
         class: 'Enqueue\JobQueue\Doctrine\JobStorage'
+        public: true
         arguments:
             - '@doctrine'
             - 'Enqueue\JobQueue\Doctrine\Entity\Job'
@@ -12,9 +13,11 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.job.storage:
         alias: 'Enqueue\JobQueue\Doctrine\JobStorage'
+        public: true
 
     Enqueue\JobQueue\JobProcessor:
         class: 'Enqueue\JobQueue\JobProcessor'
+        public: true
         arguments:
             - '@Enqueue\JobQueue\Doctrine\JobStorage'
             - '@Enqueue\Client\Producer'
@@ -22,27 +25,33 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.job.processor:
         alias: 'Enqueue\JobQueue\JobProcessor'
+        public: true
 
     Enqueue\JobQueue\JobRunner:
         class: 'Enqueue\JobQueue\JobRunner'
+        public: true
         arguments:
             - '@Enqueue\JobQueue\JobProcessor'
 
     # Deprecated. To be removed in 0.10.
     enqueue.job.runner:
         alias: 'Enqueue\JobQueue\JobRunner'
+        public: true
 
     Enqueue\JobQueue\CalculateRootJobStatusService:
         class: 'Enqueue\JobQueue\CalculateRootJobStatusService'
+        public: true
         arguments:
             - '@Enqueue\JobQueue\Doctrine\JobStorage'
 
     # Deprecated. To be removed in 0.10.
     enqueue.job.calculate_root_job_status_service:
         alias: 'Enqueue\JobQueue\CalculateRootJobStatusService'
+        public: true
 
     Enqueue\JobQueue\CalculateRootJobStatusProcessor:
         class: 'Enqueue\JobQueue\CalculateRootJobStatusProcessor'
+        public: true
         arguments:
             - '@Enqueue\JobQueue\Doctrine\JobStorage'
             - '@Enqueue\JobQueue\CalculateRootJobStatusService'
@@ -54,9 +63,11 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.job.calculate_root_job_status_processor:
         alias: 'Enqueue\JobQueue\CalculateRootJobStatusProcessor'
+        public: true
 
     Enqueue\JobQueue\DependentJobProcessor:
         class: 'Enqueue\JobQueue\DependentJobProcessor'
+        public: true
         arguments:
             - '@Enqueue\JobQueue\Doctrine\JobStorage'
             - '@Enqueue\Client\Producer'
@@ -67,12 +78,15 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.job.dependent_job_processor:
         alias: 'Enqueue\JobQueue\DependentJobProcessor'
+        public: true
 
     Enqueue\JobQueue\DependentJobService:
         class: 'Enqueue\JobQueue\DependentJobService'
+        public: true
         arguments:
             - '@Enqueue\JobQueue\Doctrine\JobStorage'
 
     # Deprecated. To be removed in 0.10.
     enqueue.job.dependent_job_service:
         alias: 'Enqueue\JobQueue\DependentJobService'
+        public: true
