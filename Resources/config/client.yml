@@ -5,6 +5,7 @@ services:
 
     Enqueue\Client\Producer:
         class: 'Enqueue\Client\Producer'
+        public: true
         arguments:
             - '@enqueue.client.driver'
             - '@enqueue.client.rpc_factory'
@@ -13,27 +14,33 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.producer:
         alias: 'Enqueue\Client\Producer'
+        public: true
 
     # Deprecated. To be removed in 0.10.
     enqueue.producer:
         alias: 'enqueue.client.producer'
+        public: true
 
     # Deprecated. To be removed in 0.10.
     enqueue.client.producer_v2:
         alias: 'enqueue.client.producer'
+        public: true
 
     Enqueue\Client\SpoolProducer:
         class: 'Enqueue\Client\SpoolProducer'
+        public: true
         arguments:
             - '@Enqueue\Client\Producer'
 
     # Deprecated. To be removed in 0.10.
     enqueue.client.spool_producer:
         alias: 'Enqueue\Client\SpoolProducer'
+        public: true
 
     # Deprecated. To be removed in 0.10.
     enqueue.spool_producer:
         alias: 'enqueue.client.spool_producer'
+        public: true
 
     enqueue.client.extensions:
         class: 'Enqueue\Client\ChainExtension'
@@ -63,6 +70,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.router_processor:
         alias: 'Enqueue\Client\RouterProcessor'
+        public: true
 
     enqueue.client.processor_registry:
         class: 'Enqueue\Symfony\Client\ContainerAwareProcessorRegistry'
@@ -78,6 +86,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.meta.topic_meta_registry:
         alias: 'Enqueue\Client\Meta\TopicMetaRegistry'
+        public: true
 
     Enqueue\Client\Meta\QueueMetaRegistry:
         class: 'Enqueue\Client\Meta\QueueMetaRegistry'
@@ -87,6 +96,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.meta.queue_meta_registry:
         alias: 'Enqueue\Client\Meta\QueueMetaRegistry'
+        public: true
 
     enqueue.client.delegate_processor:
         class: 'Enqueue\Client\DelegateProcessor'
@@ -125,6 +135,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.consume_messages_command:
         alias: 'Enqueue\Symfony\Client\ConsumeMessagesCommand'
+        public: true
 
     Enqueue\Symfony\Client\ProduceMessageCommand:
         class: 'Enqueue\Symfony\Client\ProduceMessageCommand'
@@ -137,9 +148,11 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.produce_message_command:
         alias: 'Enqueue\Symfony\Client\ProduceMessageCommand'
+        public: true
 
     Enqueue\Symfony\Client\Meta\TopicsCommand:
         class: 'Enqueue\Symfony\Client\Meta\TopicsCommand'
+        public: true
         arguments:
             - '@Enqueue\Client\Meta\TopicMetaRegistry'
         tags:
@@ -148,9 +161,11 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.meta.topics_command:
         alias: 'Enqueue\Symfony\Client\Meta\TopicsCommand'
+        public: true
 
     Enqueue\Symfony\Client\Meta\QueuesCommand:
         class: 'Enqueue\Symfony\Client\Meta\QueuesCommand'
+        public: true
         arguments:
             - '@Enqueue\Client\Meta\QueueMetaRegistry'
         tags:
@@ -159,6 +174,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.meta.queues_command:
         alias: 'Enqueue\Symfony\Client\Meta\QueuesCommand'
+        public: true
 
     Enqueue\Symfony\Client\SetupBrokerCommand:
         class: 'Enqueue\Symfony\Client\SetupBrokerCommand'
@@ -171,6 +187,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.client.setup_broker_command:
         alias: 'Enqueue\Symfony\Client\SetupBrokerCommand'
+        public: true
 
     enqueue.profiler.message_queue_collector:
         class: 'Enqueue\Bundle\Profiler\MessageQueueCollector'
@@ -182,6 +199,7 @@ services:
 
     Enqueue\Symfony\Client\FlushSpoolProducerListener:
         class: 'Enqueue\Symfony\Client\FlushSpoolProducerListener'
+        public: true
         arguments:
             - '@Enqueue\Client\SpoolProducer'
         tags:
@@ -190,3 +208,4 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.flush_spool_producer_listener:
         alias: 'Enqueue\Symfony\Client\FlushSpoolProducerListener'
+        public: true

@@ -7,6 +7,7 @@ services:
 
     Enqueue\Consumption\QueueConsumer:
         class: 'Enqueue\Consumption\QueueConsumer'
+        public: true
         arguments:
             - '@enqueue.transport.context'
             - '@enqueue.consumption.extensions'
@@ -16,9 +17,11 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.consumption.queue_consumer:
         alias: 'Enqueue\Consumption\QueueConsumer'
+        public: true
 
     Enqueue\Symfony\Consumption\ContainerAwareConsumeMessagesCommand:
         class: 'Enqueue\Symfony\Consumption\ContainerAwareConsumeMessagesCommand'
+        public: true
         arguments:
             - '@Enqueue\Consumption\QueueConsumer'
         tags:
@@ -27,6 +30,7 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.command.consume_messages:
         alias: 'Enqueue\Symfony\Consumption\ContainerAwareConsumeMessagesCommand'
+        public: true
 
     enqueue.transport.rpc_factory:
         class: 'Enqueue\Rpc\RpcFactory'
@@ -36,6 +40,7 @@ services:
 
     Enqueue\Rpc\RpcClient:
         class: 'Enqueue\Rpc\RpcClient'
+        public: true
         arguments:
             - '@enqueue.transport.context'
             - '@enqueue.transport.rpc_factory'
@@ -43,3 +48,4 @@ services:
     # Deprecated. To be removed in 0.10.
     enqueue.transport.rpc_client:
         alias: 'Enqueue\Rpc\RpcClient'
+        public: true
