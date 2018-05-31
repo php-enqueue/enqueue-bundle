@@ -11,6 +11,7 @@ use Enqueue\Null\Symfony\NullTransportFactory;
 use Enqueue\Symfony\DefaultTransportFactory;
 use Enqueue\Symfony\DriverFactoryInterface;
 use Enqueue\Symfony\TransportFactoryInterface;
+use Interop\Queue\PsrProcessor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -71,6 +72,9 @@ class EnqueueExtension extends Extension implements PrependExtensionInterface
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->registerForAutoconfiguration(PsrProcessor::class)
+            ->addTag('enqueue.client.processor');
 
         foreach ($config['transport'] as $name => $transportConfig) {
             $this->factories[$name]->createConnectionFactory($container, $transportConfig);

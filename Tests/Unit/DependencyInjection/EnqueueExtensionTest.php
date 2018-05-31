@@ -17,6 +17,7 @@ use Enqueue\Symfony\DefaultTransportFactory;
 use Enqueue\Symfony\MissingTransportFactory;
 use Enqueue\Symfony\TransportFactoryInterface;
 use Enqueue\Test\ClassExtensionTrait;
+use Interop\Queue\PsrProcessor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -631,6 +632,19 @@ class EnqueueExtensionTest extends TestCase
                 'need_package' => true,
             ],
         ]], $container);
+    }
+
+    public function testShouldLoadProcessAutoconfigureChildDefinition()
+    {
+        $container = $this->getContainerBuilder(true);
+
+        $extension = new EnqueueExtension();
+        $extension->load([[
+            'client' => [],
+            'transport' => [],
+        ]], $container);
+
+        self::assertTrue($container->hasDefinition(PsrProcessor::class));
     }
 
     /**
