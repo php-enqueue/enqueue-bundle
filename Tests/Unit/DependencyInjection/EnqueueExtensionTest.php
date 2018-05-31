@@ -644,7 +644,9 @@ class EnqueueExtensionTest extends TestCase
             'transport' => [],
         ]], $container);
 
-        self::assertTrue($container->hasDefinition(PsrProcessor::class));
+        $autoconfigured = $container->getAutoconfiguredInstanceof();
+
+        self::assertArrayHasKey(PsrProcessor::class, $autoconfigured);
     }
 
     /**
