@@ -2,13 +2,13 @@
 
 namespace Enqueue\Bundle\Tests\Functional\App;
 
-use Enqueue\Client\CommandSubscriberInterface;
+use Enqueue\Client\TopicSubscriberInterface;
 use Enqueue\Consumption\Result;
 use Interop\Queue\Context;
 use Interop\Queue\Message;
 use Interop\Queue\Processor;
 
-class TestCommandSubscriberProcessor implements Processor, CommandSubscriberInterface
+class TestTopicSubscriberProcessor implements Processor, TopicSubscriberInterface
 {
     public $calls = [];
 
@@ -21,8 +21,8 @@ class TestCommandSubscriberProcessor implements Processor, CommandSubscriberInte
         );
     }
 
-    public static function getSubscribedCommand()
+    public static function getSubscribedTopics()
     {
-        return 'theCommand';
+        return 'theTopic';
     }
 }
