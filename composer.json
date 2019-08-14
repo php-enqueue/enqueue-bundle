@@ -1,5 +1,5 @@
 {
-    "name": "enqueue/enqueue-bundle",
+    "name": "truckee/enqueue-bundle",
     "type": "symfony-bundle",
     "description": "Message Queue Bundle",
     "keywords": ["messaging", "queue", "amqp", "rabbitmq"],
