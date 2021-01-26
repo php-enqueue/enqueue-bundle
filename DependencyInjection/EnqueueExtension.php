@@ -27,7 +27,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-final class EnqueueExtension extends Extension
+final class EnqueueExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -154,44 +154,56 @@ final class EnqueueExtension extends Extension
         return new Configuration($container->getParameter('kernel.debug'));
     }
 
-//    public function prepend(ContainerBuilder $container): void
-//    {
-//        $this->registerJobQueueDoctrineEntityMapping($container);
-//    }
-//
-//    private function registerJobQueueDoctrineEntityMapping(ContainerBuilder $container)
-//    {
-//        if (!class_exists(Job::class)) {
-//            return;
-//        }
-//
-//        $bundles = $container->getParameter('kernel.bundles');
-//
-//        if (!isset($bundles['DoctrineBundle'])) {
-//            return;
-//        }
-//
-//        foreach ($container->getExtensionConfig('doctrine') as $config) {
-//            // do not register mappings if dbal not configured.
-//            if (!empty($config['dbal'])) {
-//                $rc = new \ReflectionClass(Job::class);
-//                $jobQueueRootDir = dirname($rc->getFileName());
-//                $container->prependExtensionConfig('doctrine', [
-//                    'orm' => [
-//                        'mappings' => [
-//                            'enqueue_job_queue' => [
-//                                'is_bundle' => false,
-//                                'type' => 'xml',
-//                                'dir' => $jobQueueRootDir.'/Doctrine/mapping',
-//                                'prefix' => 'Enqueue\JobQueue\Doctrine\Entity',
-//                            ],
-//                        ],
-//                    ],
-//                ]);
-//                break;
-//            }
-//        }
-//    }
+    public function prepend(ContainerBuilder $container): void
+    {
+        $this->registerJobQueueDoctrineEntityMapping($container);
+    }
+
+    private function registerJobQueueDoctrineEntityMapping(ContainerBuilder $container)
+    {
+        if (!class_exists(Job::class)) {
+            return;
+        }
+
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['DoctrineBundle'])) {
+            return;
+        }
+
+        $config = $container->getExtensionConfig('enqueue');
+
+        if (!empty($config)) {
+            $processedConfig = $this->processConfiguration(new Configuration(false), $config);
+
+            foreach ($processedConfig as $name => $modules) {
+                if (isset($modules['job']) && false === $modules['job']['default_mapping']) {
+                    return;
+                }
+            }
+        }
+
+        foreach ($container->getExtensionConfig('doctrine') as $config) {
+            // do not register mappings if dbal not configured.
+            if (!empty($config['dbal'])) {
+                $rc = new \ReflectionClass(Job::class);
+                $jobQueueRootDir = dirname($rc->getFileName());
+                $container->prependExtensionConfig('doctrine', [
+                    'orm' => [
+                        'mappings' => [
+                            'enqueue_job_queue' => [
+                                'is_bundle' => false,
+                                'type' => 'xml',
+                                'dir' => $jobQueueRootDir.'/Doctrine/mapping',
+                                'prefix' => 'Enqueue\JobQueue\Doctrine\Entity',
+                            ],
+                        ],
+                    ],
+                ]);
+                break;
+            }
+        }
+    }
 
     private function setupAutowiringForDefaultClientsProcessors(ContainerBuilder $container, string $defaultClient)
     {
