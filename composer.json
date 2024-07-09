@@ -47,7 +47,8 @@
     },
     "suggest": {
         "enqueue/async-command": "If want to run Symfony command via message queue",
-        "enqueue/async-event-dispatcher": "If you want dispatch and process events asynchronously"
+        "enqueue/async-event-dispatcher": "If you want dispatch and process events asynchronously",
+
     },
     "autoload": {
         "psr-4": { "Enqueue\\Bundle\\": "" },
