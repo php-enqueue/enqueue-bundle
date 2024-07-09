@@ -26,6 +26,7 @@ class MessageQueueCollectorTest extends TestCase
     public function testCouldBeConstructedWithEmptyConstructor()
     {
         new MessageQueueCollector();
+        self::expectNotToPerformAssertions();
     }
 
     public function testShouldReturnExpectedName()

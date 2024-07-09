@@ -20,6 +20,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
     public function testCouldBeConstructedWithRequiredAttributes()
     {
         new DoctrinePingConnectionExtension($this->createRegistryMock());
+        self::expectNotToPerformAssertions();
     }
 
     public function testShouldNotReconnectIfConnectionIsOK()

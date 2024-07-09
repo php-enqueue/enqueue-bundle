@@ -33,6 +33,7 @@ class EnqueueExtensionTest extends TestCase
     public function testCouldBeConstructedWithoutAnyArguments()
     {
         new EnqueueExtension();
+        self::expectNotToPerformAssertions();
     }
 
     public function testShouldRegisterConnectionFactory()

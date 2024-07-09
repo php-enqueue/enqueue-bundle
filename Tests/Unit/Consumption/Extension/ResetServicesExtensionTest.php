@@ -19,6 +19,7 @@ class ResetServicesExtensionTest extends TestCase
     public function testCouldBeConstructedWithRequiredArguments()
     {
         new ResetServicesExtension($this->createResetterMock());
+        self::expectNotToPerformAssertions();
     }
 
     public function testItShouldResetServices()

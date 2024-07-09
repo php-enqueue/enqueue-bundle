@@ -28,6 +28,7 @@ class ConfigurationTest extends TestCase
     public function testCouldBeConstructedWithDebugAsArgument()
     {
         new Configuration(true);
+        self::expectNotToPerformAssertions();
     }
 
     public function testShouldProcessSeveralTransports()

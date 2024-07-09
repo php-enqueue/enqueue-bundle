@@ -19,5 +19,6 @@ class EnqueueBundleTest extends TestCase
     public function testCouldBeConstructedWithoutAnyArguments()
     {
         new EnqueueBundle();
+        self::expectNotToPerformAssertions();
     }
 }

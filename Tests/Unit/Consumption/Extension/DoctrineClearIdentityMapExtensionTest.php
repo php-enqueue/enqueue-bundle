@@ -19,6 +19,7 @@ class DoctrineClearIdentityMapExtensionTest extends TestCase
     public function testCouldBeConstructedWithRequiredArguments()
     {
         new DoctrineClearIdentityMapExtension($this->createRegistryMock());
+        self::expectNotToPerformAssertions();
     }
 
     public function testShouldClearIdentityMap()
