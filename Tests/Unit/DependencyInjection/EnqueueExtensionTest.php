@@ -30,6 +30,9 @@ class EnqueueExtensionTest extends TestCase
         self::assertClassFinal(EnqueueExtension::class);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCouldBeConstructedWithoutAnyArguments()
     {
         new EnqueueExtension();
