@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
-        "symfony/framework-bundle": "^5.4|^6.0",
+        "symfony/framework-bundle": "^5.4|^6.0|^7.0",
         "queue-interop/amqp-interop": "^0.8.2",
         "queue-interop/queue-interop": "^0.8",
         "enqueue/enqueue": "^0.10",
@@ -57,6 +57,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "0.10.x-dev"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false
         }
     }
 }
