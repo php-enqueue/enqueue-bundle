@@ -42,7 +42,8 @@
         "symfony/browser-kit": "^5.4|^6.0",
         "symfony/expression-language": "^5.4|^6.0",
         "symfony/validator": "^5.4|^6.0",
-        "symfony/yaml": "^5.4|^6.0"
+        "symfony/yaml": "^5.4|^6.0",
+        "dms/phpunit-arraysubset-asserts": "^0.5.0"
     },
     "suggest": {
         "enqueue/async-command": "If want to run Symfony command via message queue",
