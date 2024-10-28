@@ -6,8 +6,8 @@
     "homepage": "https://enqueue.forma-pro.com/",
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
-        "symfony/framework-bundle": "^5.4|^6.0",
+        "php": "^8.1",
+        "symfony/framework-bundle": "^5.4|^6.4",
         "queue-interop/amqp-interop": "^0.8.2",
         "queue-interop/queue-interop": "^0.8",
         "enqueue/enqueue": "^0.10",
@@ -21,6 +21,7 @@
         "docs": "https://github.com/php-enqueue/enqueue-dev/blob/master/docs/index.md"
     },
     "require-dev": {
+        "dms/phpunit-arraysubset-asserts": "^0.5.0",
         "phpunit/phpunit": "^9.5",
         "enqueue/stomp": "0.10.x-dev",
         "enqueue/amqp-ext": "0.10.x-dev",
