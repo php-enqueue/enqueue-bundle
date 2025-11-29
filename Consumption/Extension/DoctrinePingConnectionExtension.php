@@ -6,6 +6,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ManagerRegistry;
 use Enqueue\Consumption\Context\MessageReceived;
 use Enqueue\Consumption\MessageReceivedExtensionInterface;
+use ReflectionMethod;
 
 class DoctrinePingConnectionExtension implements MessageReceivedExtensionInterface
 {
@@ -36,7 +37,10 @@ class DoctrinePingConnectionExtension implements MessageReceivedExtensionInterfa
             );
 
             $connection->close();
-            if (method_exists($connection, 'connect')) {
+            if (
+                method_exists($connection, 'connect')
+                && (new ReflectionMethod($connection, 'connect'))->isPublic()
+            ) {
                 // DBAL < 4
                 $connection->connect();
             } else {
