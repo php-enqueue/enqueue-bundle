@@ -12,8 +12,6 @@ use Interop\Queue\Processor;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter;
-use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetterInterface;
 use Symfony\Contracts\Service\ResetInterface;
 
 class ResetServicesExtensionTest extends TestCase
