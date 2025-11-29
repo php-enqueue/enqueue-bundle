@@ -13,6 +13,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter;
+use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetterInterface;
+use Symfony\Contracts\Service\ResetInterface;
 
 class ResetServicesExtensionTest extends TestCase
 {
@@ -50,8 +52,8 @@ class ResetServicesExtensionTest extends TestCase
     /**
      * @return MockObject|ManagerRegistry
      */
-    protected function createResetterMock(): ServicesResetter
+    protected function createResetterMock(): ResetInterface
     {
-        return $this->createMock(ServicesResetter::class);
+        return $this->createMock(ResetInterface::class);
     }
 }

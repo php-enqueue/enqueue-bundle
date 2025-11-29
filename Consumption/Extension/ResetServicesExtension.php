@@ -4,18 +4,12 @@ namespace Enqueue\Bundle\Consumption\Extension;
 
 use Enqueue\Consumption\Context\PostMessageReceived;
 use Enqueue\Consumption\PostMessageReceivedExtensionInterface;
-use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter;
+use Symfony\Contracts\Service\ResetInterface;
 
 class ResetServicesExtension implements PostMessageReceivedExtensionInterface
 {
-    /**
-     * @var ServicesResetter
-     */
-    private $resetter;
-
-    public function __construct(ServicesResetter $resetter)
+    public function __construct(private ResetInterface $resetter)
     {
-        $this->resetter = $resetter;
     }
 
     public function onPostMessageReceived(PostMessageReceived $context): void
