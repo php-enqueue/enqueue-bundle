@@ -36,7 +36,7 @@ class DoctrinePingConnectionExtension implements MessageReceivedExtensionInterfa
             );
 
             $connection->close();
-            $connection->connect();
+            $connection->getServerVersion(); // calls connect() internally
 
             $context->getLogger()->debug(
                 '[DoctrinePingConnectionExtension] Connection is active now.'

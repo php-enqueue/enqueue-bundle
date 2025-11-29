@@ -43,7 +43,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
         ;
         $connection
             ->expects($this->never())
-            ->method('connect')
+            ->method('getServerVersion')
         ;
 
         $context = $this->createContext();
@@ -83,7 +83,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
         ;
         $connection
             ->expects($this->once())
-            ->method('connect')
+            ->method('getServerVersion')
         ;
 
         $context = $this->createContext();
