@@ -14,7 +14,6 @@ use Interop\Queue\Message;
 use Interop\Queue\Processor;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use ReflectionMethod;
 
 class DoctrinePingConnectionExtensionTest extends TestCase
 {
@@ -44,7 +43,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
         ;
         if (
             method_exists(Connection::class, 'connect')
-            && (new ReflectionMethod(Connection::class, 'connect'))->isPublic()
+            && (new \ReflectionMethod(Connection::class, 'connect'))->isPublic()
         ) {
             // DBAL < 4
             $connection->expects($this->never())
@@ -93,7 +92,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
         ;
         if (
             method_exists(Connection::class, 'connect')
-            && (new ReflectionMethod(Connection::class, 'connect'))->isPublic()
+            && (new \ReflectionMethod(Connection::class, 'connect'))->isPublic()
         ) {
             // DBAL < 4
             $connection->expects($this->once())
