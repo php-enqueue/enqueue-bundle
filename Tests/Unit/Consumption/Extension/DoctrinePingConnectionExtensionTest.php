@@ -41,10 +41,16 @@ class DoctrinePingConnectionExtensionTest extends TestCase
             ->expects($this->never())
             ->method('close')
         ;
-        $connection
-            ->expects($this->never())
-            ->method('getServerVersion')
-        ;
+        if (method_exists($connection, 'connect')) {
+            // DBAL < 4
+            $connection->expects($this->never())
+                ->method('connect');
+        } else {
+            // DBAL >= 4, calls connect() internally
+            $connection
+                ->expects($this->never())
+                ->method('getServerVersion');
+        }
 
         $context = $this->createContext();
 
@@ -81,10 +87,15 @@ class DoctrinePingConnectionExtensionTest extends TestCase
             ->expects($this->once())
             ->method('close')
         ;
-        $connection
-            ->expects($this->once())
-            ->method('getServerVersion')
-        ;
+        if (method_exists($connection, 'connect')) {
+            // DBAL < 4
+            $connection->expects($this->once())
+                ->method('connect');
+        } else {
+            // DBAL >= 4, calls connect() internally
+            $connection->expects($this->once())
+                ->method('getServerVersion');
+        }
 
         $context = $this->createContext();
 
