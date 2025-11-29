@@ -41,7 +41,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
             ->expects($this->never())
             ->method('close')
         ;
-        if (method_exists($connection, 'connect')) {
+        if (method_exists(Connection::class, 'connect')) {
             // DBAL < 4
             $connection->expects($this->never())
                 ->method('connect');
@@ -87,7 +87,7 @@ class DoctrinePingConnectionExtensionTest extends TestCase
             ->expects($this->once())
             ->method('close')
         ;
-        if (method_exists($connection, 'connect')) {
+        if (method_exists(Connection::class, 'connect')) {
             // DBAL < 4
             $connection->expects($this->once())
                 ->method('connect');
