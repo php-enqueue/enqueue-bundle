@@ -28,14 +28,8 @@ class AppKernel extends Kernel
         return sys_get_temp_dir().'/EnqueueBundle/cache/logs';
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
-        if (self::VERSION_ID < 60000) {
-            $loader->load(__DIR__.'/config/config-sf5.yml');
-
-            return;
-        }
-
         $loader->load(__DIR__.'/config/config.yml');
     }
 

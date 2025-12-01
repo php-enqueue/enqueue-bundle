@@ -64,14 +64,9 @@ class CustomAppKernel extends Kernel
         return parent::getContainerClass().'Custom'.$this->enqueueConfigId;
     }
 
-    protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader): void
     {
-        if (self::VERSION_ID < 60000) {
-            $loader->load(__DIR__.'/config/custom-config-sf5.yml');
-        } else {
-            $loader->load(__DIR__.'/config/custom-config.yml');
-        }
-
+        $loader->load(__DIR__.'/config/custom-config.yml');
         $c->loadFromExtension('enqueue', $this->enqueueConfig);
     }
 
