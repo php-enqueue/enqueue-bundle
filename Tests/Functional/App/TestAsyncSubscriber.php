@@ -14,7 +14,7 @@ class TestAsyncSubscriber implements EventSubscriberInterface
         $this->calls[] = func_get_args();
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return ['test_async_subscriber' => 'onEvent'];
     }
